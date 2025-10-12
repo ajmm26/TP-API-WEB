@@ -1,0 +1,19 @@
+﻿/* Aplica al botón completo */
+.carousel-control-prev,
+.carousel-control-next {
+    transition: background-color 0.6s;
+   
+}
+
+    /* Hover: resaltar botón */
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro semitransparente */
+    }
+
+/* Ajuste opcional para que el icono se vea más claro */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: transparent !important; /* asegura que no tenga fondo */
+    filter: brightness(1.5); /* aclara el icono */
+}
