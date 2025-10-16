@@ -71,5 +71,23 @@ namespace accesoDatos
         {
             comando.Parameters.Clear();
         }
+        public object ejecutarLecturaEscalar()
+        {
+            comando.Connection = conexion;
+
+            if (conexion.State != System.Data.ConnectionState.Open)
+                conexion.Open();
+
+            object resultado = comando.ExecuteScalar();
+
+            conexion.Close();
+            return resultado;
+        }
+
+
+
+
+
+
     }
 }

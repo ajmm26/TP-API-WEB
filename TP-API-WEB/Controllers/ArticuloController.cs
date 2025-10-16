@@ -29,30 +29,70 @@ namespace TP_API_WEB.Controllers
         }
 
         // POST: api/Articulo
-        public void Post([FromBody]ArticuloDto articulo)
+        public void Post([FromBody] ArticuloDto articulo)
         {
             negocioArticulo negocio = new negocioArticulo();
-            Articulo nuevo = new Articulo();
-            nuevo.Codigo = articulo.Codigo;
-            nuevo.Nombre = articulo.Nombre;
-            nuevo.Descripcion = articulo.Descripcion;
-            nuevo.Marca = new Marca();
-            nuevo.Marca.Id = articulo.IdMarca;
-            nuevo.Categoria = new Categoria();
-            nuevo.Categoria.Id = articulo.IdCategoria;
-            nuevo.Precio = articulo.Precio;
+            Articulo nuevo = new Articulo
+            {
+                Codigo = articulo.Codigo,
+                Nombre = articulo.Nombre,
+                Descripcion = articulo.Descripcion,
+                Marca = new Marca { Id = articulo.IdMarca },
+                Categoria = new Categoria { Id = articulo.IdCategoria },
+                Precio = articulo.Precio
+            };
 
-            negocio.agregar(nuevo);
+            nuevo.Id = negocio.agregar(nuevo); 
+
+            if (articulo.Imagenes != null && articulo.Imagenes.Count > 0)
+            {
+                negocioImagenes negocioImg = new negocioImagenes();
+                foreach (string url in articulo.Imagenes)
+                {
+                    negocioImg.agregarImagen(nuevo.Id, url);
+                }
+            }
         }
 
+
+
         // PUT: api/Articulo/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        [Route("api/articulo/{id}")]
+        public IHttpActionResult Put(int id, [FromBody]ArticuloDto dto)
         {
+            if (dto == null || dto.Id <= 0)
+                return BadRequest("Id invalido");
+            try
+            {
+                negocioArticulo negocio = new negocioArticulo();
+                Articulo aModificar = new Articulo
+                {
+                    Id = dto.Id,
+                    Codigo = dto.Codigo,
+                    Nombre=dto.Nombre,
+                    Descripcion=dto.Descripcion,
+                    Marca=new Marca { Id = dto.IdMarca},
+                    Categoria=new Categoria { Id = dto.IdCategoria},
+                    Precio = dto.Precio,
+                    Imagenes =dto.Imagenes
+
+                };
+                negocio.modificar(aModificar);
+                return Ok("Articulo modificado correctamente.");
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         // DELETE: api/Articulo/5
         public void Delete(int id)
         {
+            negocioArticulo negocio = new negocioArticulo();
+            negocio.eliminar(id);
         }
     }
 }
