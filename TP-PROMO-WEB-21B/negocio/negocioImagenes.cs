@@ -42,5 +42,28 @@ namespace negocio
             }
         }
 
+        public void agregarImagen(int idArticulo=1, string Url= "https://tse2.mm.bing.net/th/id/OIP._XsKjB2Mva6_tomRtgH7fQHaFi?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3")
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO Imagenes (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @Url)");
+                datos.limpiarParametros();
+                datos.agregarParametros("@IdArticulo", idArticulo);
+                datos.agregarParametros("@Url", Url);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

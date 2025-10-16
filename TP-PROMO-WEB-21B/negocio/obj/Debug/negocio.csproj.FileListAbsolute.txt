@@ -31,3 +31,14 @@ C:\Users\raull\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\obj\Debug\negocio.csp
 C:\Users\raull\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\obj\Debug\negocio.csproj.Up2Date
 C:\Users\raull\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\obj\Debug\negocio.dll
 C:\Users\raull\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\obj\Debug\negocio.pdb
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\bin\Debug\negocio.dll
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\bin\Debug\negocio.pdb
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\bin\Debug\accesoDatos.dll
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\bin\Debug\dominio.dll
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\bin\Debug\accesoDatos.pdb
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\bin\Debug\dominio.pdb
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\obj\Debug\negocio.csproj.AssemblyReference.cache
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\obj\Debug\negocio.csproj.CoreCompileInputs.cache
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\obj\Debug\negocio.csproj.Up2Date
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\obj\Debug\negocio.dll
+C:\Users\Ale\Desktop\TP-API-WEB\TP-PROMO-WEB-21B\negocio\obj\Debug\negocio.pdb
