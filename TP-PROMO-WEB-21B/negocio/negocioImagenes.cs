@@ -1,14 +1,15 @@
 ﻿
+using accesoDatos;
+using dominio;
+using System;
 using System;
 using System.Collections.Generic;
-using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
-using dominio;
-using accesoDatos;
-using System.Data.SqlClient;
 
 namespace negocio
 {
@@ -42,7 +43,7 @@ namespace negocio
             }
         }
 
-        public void agregarImagen(int idArticulo=1, string Url= "https://tse2.mm.bing.net/th/id/OIP._XsKjB2Mva6_tomRtgH7fQHaFi?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3")
+        public void agregarImagen(int idArticulo, string Url)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -64,6 +65,56 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+
+
+        public bool modificarImagenUrl(int id, string url )
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl=@url WHERE id=@id");
+                datos.limpiarParametros();
+                datos.agregarParametros("@url", url);
+                datos.agregarParametros("@id", id);
+               datos.ejecutarAccion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public bool deleteImagen(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("DELETE FROM IMAGENES WHERE id=@id");
+                datos.limpiarParametros();
+                datos.agregarParametros("@id", id);
+                datos.ejecutarAccion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
     }
 }

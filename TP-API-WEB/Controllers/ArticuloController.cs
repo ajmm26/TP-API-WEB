@@ -25,7 +25,13 @@ namespace TP_API_WEB.Controllers
         {
             negocioArticulo negocio = new negocioArticulo();
             List<Articulo> lista = negocio.listar();    
-            return lista.Find(x=> x.Id == id);
+            Articulo art = new Articulo();
+            art = lista.Find(x => x.Id == id);
+            if (art != null) {
+
+                return art;
+            }
+            return art = null;
         }
 
         // POST: api/Articulo
@@ -34,6 +40,7 @@ namespace TP_API_WEB.Controllers
             negocioArticulo negocio = new negocioArticulo();
             Articulo nuevo = new Articulo
             {
+
                 Codigo = articulo.Codigo,
                 Nombre = articulo.Nombre,
                 Descripcion = articulo.Descripcion,

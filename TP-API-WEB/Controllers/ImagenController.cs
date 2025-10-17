@@ -23,7 +23,14 @@ namespace TP_API_WEB.Controllers
         {
             negocioImagenes imagenes = new negocioImagenes();
             List<Imagen> imageneslist = imagenes.listar();
-            return imageneslist.Find(x => x.Id==id);
+            Imagen img= new Imagen();
+            img = imageneslist.Find(x => x.Id == id);
+            if(img == null)
+            {
+                return null;
+            }
+
+            return img;
 
 
         }
@@ -32,17 +39,69 @@ namespace TP_API_WEB.Controllers
         public void Post([FromBody]ImagenDto img)
         {
             negocioImagenes imagenes = new negocioImagenes();
-            imagenes.agregarImagen();
+            string url = null;
+            int idArticulo = 0;
+          
+
+            if (!string.IsNullOrEmpty(img.url) && img.IdArticulo > -1)
+            {
+                url = img.url;
+                idArticulo = img.IdArticulo;
+                imagenes.agregarImagen(idArticulo, url);
+            }
+          
         }
 
-        // PUT: api/Imagen/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        [Route("api/imagen/{id}")]
+        public IHttpActionResult Put(int id, [FromBody] ImagenDto img)
         {
+            try
+            {
+                if (id <= 0 || img == null || string.IsNullOrEmpty(img.url))
+                    return BadRequest("ID inválido o URL vacía.");
+
+                negocioImagenes imagenN = new negocioImagenes();
+                bool res = imagenN.modificarImagenUrl(id, img.url);
+
+                if (res)
+                    return Ok("Modificación exitosa");
+                else
+                    return NotFound(); // No se encontró registro
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         // DELETE: api/Imagen/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("api/imagen/{id}")]
+        public IHttpActionResult Delete(int id)
         {
+
+            try
+            {
+                negocioImagenes imagenN = new negocioImagenes();
+                if (id <= 0)
+                    return BadRequest("ID inválido o URL vacía.");
+
+                bool res = imagenN.deleteImagen(id);
+
+                if (res)
+                    return Ok("Eliminacion exitosa");
+                else
+                    return NotFound(); // No se encontró registro
+
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+
+            }
+
         }
     }
 }
